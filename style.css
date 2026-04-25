@@ -1,0 +1,319 @@
+/* --- Root Variables --- */
+:root {
+    --primary: #0066ff;        /* Pacific Blue (Buttons Only) */
+    --primary-hover: #0052cc;
+    --ice-blue: #e0efff;       /* Soft section background */
+    --dark: #0f172a;           /* Navy/Slate for Text and Footer */
+    --white: #ffffff;
+    --border: #e2e8f0;
+    --text-main: #334155;
+    --text-muted: #64748b;
+}
+
+/* --- Base Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-main);
+    line-height: 1.6;
+    background-color: var(--white);
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.container.narrow { max-width: 800px; }
+
+/* --- Navigation --- */
+.navbar {
+    padding: 1.5rem 0;
+    background: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.brand .name {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    color: var(--dark);
+}
+
+.brand .tagline {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+}
+
+.nav-links { display: flex; align-items: center; gap: 2rem; }
+.nav-links a { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; }
+
+/* --- Buttons (The only place for Pacific Blue) --- */
+.btn-primary, .btn-submit {
+    background: var(--primary);
+    color: white !important;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+}
+
+.btn-primary:hover, .btn-submit:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+}
+
+.btn-dark { 
+    background: var(--dark); 
+    color: white; 
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.btn-outline { 
+    border: 1px solid var(--border); 
+    padding: 0.8rem 1.8rem; 
+    border-radius: 8px; 
+    color: var(--dark); 
+    font-weight: 600; 
+    text-decoration: none; 
+    transition: 0.3s;
+}
+.btn-outline:hover { background: var(--ice-blue); }
+
+/* --- Hero Section (White) --- */
+.hero { padding: 8rem 0; background-color: var(--white); }
+.hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 4rem; align-items: center; }
+.subtitle { font-weight: 700; font-size: 0.8rem; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; }
+.hero h1 { font-family: 'Montserrat', sans-serif; font-size: 3.5rem; line-height: 1.1; color: var(--dark); margin: 1rem 0; }
+.accent { color: var(--primary); }
+.hero-btns { display: flex; gap: 1rem; margin-top: 2rem; }
+.hero-image {
+    background: var(--ice-blue);
+    height: 400px;
+    border-radius: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #cbd5e1;
+    font-size: 6rem;
+    border: 1px solid var(--border);
+}
+
+/* --- Meet Me Section (Ice Blue) --- */
+.meet-me {
+    background-color: var(--ice-blue);
+    padding: 8rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.meet-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 5rem; align-items: center; }
+.profile-container { position: relative; }
+.profile-img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    border: 8px solid var(--white);
+}
+
+.experience-badge {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: var(--dark); /* Changed to Dark for a premium look */
+    color: white;
+    padding: 1.2rem;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.meet-info h2 { font-family: 'Montserrat', sans-serif; font-size: 2.8rem; color: var(--dark); margin: 1rem 0; }
+.service-areas {
+    margin-top: 2.5rem;
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+}
+
+.area-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; margin-top: 1rem;}
+.area-list li { font-size: 0.9rem; display: flex; align-items: center; gap: 10px; }
+.area-list i { color: var(--primary); }
+
+/* --- Services Section (White) --- */
+.services { 
+    background-color: var(--white); 
+    padding: 8rem 0; 
+}
+
+.section-header { text-align: center; margin-bottom: 4rem; }
+.section-header h2 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: var(--dark); margin-bottom: 1rem; }
+.header-line { width: 60px; height: 4px; background: var(--primary); margin: 0 auto 2rem; border-radius: 2px; }
+
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+
+.card {
+    background: var(--ice-blue); /* Cards contrast against white background */
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    color: var(--text-main);
+    border: 1px solid var(--border);
+    transition: 0.3s ease;
+}
+
+.card:hover { transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); border-color: var(--primary); }
+.card h3 { font-family: 'Montserrat', sans-serif; color: var(--dark); margin-bottom: 1rem; }
+.icon-box { font-size: 2rem; color: var(--primary); margin-bottom: 1.5rem; }
+
+/* --- Footer Area (Ice Blue) --- */
+.footer-contact-cta {
+    background-color: var(--ice-blue);
+    padding: 6rem 0;
+    text-align: center;
+    border-top: 1px solid var(--border);
+}
+
+footer {
+    padding: 4rem 0;
+    text-align: center;
+    background-color: var(--white);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border);
+}
+
+/* --- Map/Form Specifics (For quote.html) --- */
+.quote-page-wrapper { background-color: var(--ice-blue); }
+.contact-card {
+    background: var(--white);
+    padding: 4rem;
+    border-radius: 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+input, textarea, .custom-select {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    color: var(--dark);
+    border-radius: 8px;
+    outline: none;
+}
+input:focus, textarea:focus { border-color: var(--primary); }
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .hero-grid, .meet-grid, .area-list { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.8rem; }
+    .hero-image { display: none; }
+}
+
+/* --- Testimonials Section --- */
+.testimonials {
+    padding: 8rem 0;
+    background-color: var(--ice-blue);
+    overflow: hidden; /* Important for the marquee effect */
+}
+
+.testimonial-wrapper {
+    width: 100vw; /* Spans entire screen width */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 2rem 0;
+}
+
+.testimonial-track {
+    display: flex;
+    gap: 2rem;
+    width: 100vw;
+    /* 40s is a good speed for 7-14 cards. Adjust to your liking. */
+    animation: scrollInfinite 40s linear infinite;
+}
+
+.testimonial-track:hover {
+    animation-play-state: paused; /* Allows users to stop and read */
+}
+
+.testimonial-card {
+    flex-shrink: 0; /* Prevents the browser from squishing the cards */
+    width: 400px;
+    background: var(--white);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+}
+
+.stars {
+    color: #ffcc00; /* Gold */
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.testimonial-card p {
+    font-style: italic;
+    color: var(--text-main);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.client-meta strong {
+    display: block;
+    color: var(--dark);
+    font-size: 1rem;
+}
+
+.client-meta span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* The Animation */
+@keyframes scrollInfinite {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* This moves the track by exactly half its width */
+        transform: translateX(-50%);
+    }
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .testimonial-card {
+        width: 300px;
+    }
+}

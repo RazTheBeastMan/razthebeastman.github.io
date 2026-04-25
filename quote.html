@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Quote | Riley Hobbs</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #0066ff;
+            --primary-hover: #0052cc;
+            --ice-blue: #f0f7ff;
+            --dark: #0f172a;
+            --white: #ffffff;
+            --border: #e2e8f0;
+            --text-main: #334155;
+            --text-muted: #64748b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            line-height: 1.6;
+            background-color: var(--ice-blue);
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
+        .container.narrow { max-width: 800px; }
+
+        /* --- Navigation --- */
+        .navbar {
+            padding: 1.5rem 0;
+            background: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .brand .name { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.3rem; color: var(--dark); }
+        .back-link { text-decoration: none; color: var(--dark); font-weight: 600; font-size: 0.9rem; transition: 0.2s; }
+        .back-link:hover { color: var(--primary); }
+
+        /* --- Layout --- */
+        .quote-intro { text-align: center; padding: 5rem 0 3rem; }
+        .quote-intro h1 { font-family: 'Montserrat', sans-serif; font-size: 2.8rem; color: var(--dark); margin-bottom: 0.5rem; }
+
+        .form-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            position: relative;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: -12px;
+            left: 30px;
+            background: var(--primary);
+            color: white;
+            padding: 4px 15px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        h3 { margin-bottom: 1rem; font-family: 'Montserrat', sans-serif; color: var(--dark); }
+        .card-desc { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem; display: block; }
+
+        /* --- Checkbox Grid --- */
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .check-option {
+            border: 1px solid var(--border);
+            padding: 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.2s ease;
+            background: var(--white);
+            font-weight: 500;
+            user-select: none;
+        }
+
+        .check-option input { 
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .check-option input:checked { background-color: var(--primary); border-color: var(--primary); }
+        .check-option input:checked::after {
+            content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900;
+            color: white; font-size: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        }
+
+        .check-option.active { border-color: var(--primary); background-color: var(--ice-blue); }
+
+        /* --- Conditional Textarea --- */
+        #otherAreaWrapper {
+            margin-top: 1.5rem;
+            display: none; 
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* --- Form Elements --- */
+        .form-group { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .input-wrapper { margin-bottom: 1rem; }
+        label { display: block; font-weight: 600; font-size: 0.85rem; margin-bottom: 0.5rem; color: var(--dark); }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--ice-blue);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-family: inherit;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+        input:focus, textarea:focus { outline: none; border-color: var(--primary); background: var(--white); }
+
+        /* --- Submit Button --- */
+        .btn-submit {
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 100%;
+            max-width: 400px;
+            font-size: 1.1rem;
+            padding: 1.2rem;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 3rem auto 0;
+            transition: 0.3s;
+        }
+        .btn-submit:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0, 102, 255, 0.2); }
+
+        footer { padding: 4rem 0; text-align: center; color: var(--text-muted); font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .form-group { grid-template-columns: 1fr; }
+            .selection-grid { grid-template-columns: 1fr 1fr; }
+            .form-card { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="brand">
+                <span class="name">RILEY HOBBS</span>
+            </a>
+            <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        </div>
+    </nav>
+
+    <main class="quote-main">
+        <div class="container narrow">
+            <div class="quote-intro">
+                <h1>Quote Request</h1>
+                <p>Select your areas and service type below. I'll reach out via email shortly.</p>
+            </div>
+
+            <form id="quoteForm" action="https://formspree.io/f/xjgjlnzk" method="POST">
+                
+                <div class="form-card">
+                    <div class="card-badge">Step 1</div>
+                    <h3>Contact Details</h3>
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <label>Your Name</label>
+                            <input type="text" name="Name" placeholder="Full Name" required>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Email Address</label>
+                            <input type="email" name="_replyto" placeholder="email@example.com" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <div class="card-badge">Step 2</div>
+                    <h3>Target Suburbs</h3>
+                    <span class="card-desc">Where would you like your flyers delivered?</span>
+                    <div class="selection-grid">
+                        <label class="check-option"><input type="checkbox" name="Suburbs" value="Hope Island"> Hope Island</label>
+                        <label class="check-option"><input type="checkbox" name="Suburbs" value="Sanctuary Cove"> Sanctuary Cove</label>
+                        <label class="check-option"><input type="checkbox" name="Suburbs" value="Helensvale"> Helensvale</label>
+                        <label class="check-option"><input type="checkbox" name="Suburbs" value="Paradise Point"> Paradise Point</label>
+                        <label class="check-option"><input type="checkbox" name="Suburbs" value="Coomera"> Coomera</label>
+                        <label class="check-option"><input type="checkbox" name="Suburbs" value="Southport"> Southport</label>
+                        <label class="check-option" id="otherOption">
+                            <input type="checkbox" name="Suburbs" value="Other" id="otherCheckbox"> Other / Multiple
+                        </label>
+                    </div>
+
+                    <div id="otherAreaWrapper">
+                        <label>Specify extra areas or boundaries</label>
+                        <textarea name="Other_Location_Details" rows="3" placeholder="Tell me which other suburbs or specific streets you have in mind..."></textarea>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <div class="card-badge">Step 3</div>
+                    <h3>Campaign Scale</h3>
+                    <div class="form-group">
+                        <div class="input-wrapper">
+                            <label>Service Type</label>
+                            <select name="Service">
+                                <option value="Design, Print & Distro">Design, Print & Distro</option>
+                                <option value="Distribution Only">Distribution Only</option>
+                                <option value="Design & Printing">Design & Printing</option>
+                            </select>
+                        </div>
+                        <div class="input-wrapper">
+                            <label>Approximate Quantity</label>
+                            <input type="number" name="Quantity" placeholder="e.g. 5000">
+                        </div>
+                    </div>
+                </div>
+
+                <input type="text" name="_gotcha" style="display:none">
+
+                <button type="submit" class="btn-submit">Submit Quote Request <i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>2026 Riley Hobbs Distribution. Hope Island & Gold Coast.</p>
+    </footer>
+
+    <script>
+        const otherCheckbox = document.getElementById('otherCheckbox');
+        const otherWrapper = document.getElementById('otherAreaWrapper');
+
+        document.querySelectorAll('.check-option').forEach(option => {
+            const checkbox = option.querySelector('input');
+            checkbox.addEventListener('change', () => {
+                if(checkbox.checked) {
+                    option.classList.add('active');
+                } else {
+                    option.classList.remove('active');
+                }
+
+                if (otherCheckbox.checked) {
+                    otherWrapper.style.display = 'block';
+                } else {
+                    otherWrapper.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
